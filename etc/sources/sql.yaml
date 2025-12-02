@@ -7,6 +7,17 @@ mysql_config:
 postgresql_config:
   dburl: postgres://username:password@127.0.0.1:5432/testdb
 
+sqlite_config:
+  dburl: sqlite:/tmp/test.db
+
+sqlserver_config:
+  dburl: sqlserver://username:password@127.0.0.1:1433/testdb
+
+oracle_config:
+  dburl: oracle://username:password@127.0.0.1:1521/testdb
+
+
+
 iugo_postgres:
   dburl: postgres://iugo:nRq6g6F%2B@localhost:6543/iugo?sslmode=disable&search_path=iugo
   interval: 1800000
@@ -16,11 +27,3 @@ iugo_postgres:
     cache: true
     cacheTtl: 1800000
     cacheMissingKey: true
-sqlite_config:
-  dburl: sqlite:/tmp/test.db
-
-sqlserver_config:
-  dburl: sqlserver://username:password@127.0.0.1:1433/testdb
-
-oracle_config:
-  dburl: oracle://username:password@127.0.0.1:1521/testdb

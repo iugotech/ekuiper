@@ -31,6 +31,8 @@ import (
 	plugin2 "github.com/lf-edge/ekuiper/v2/internal/plugin"
 	"github.com/lf-edge/ekuiper/v2/pkg/modules"
 	"github.com/lf-edge/ekuiper/v2/pkg/nng"
+
+	"github.com/lf-edge/ekuiper/v2/extensions/impl/sql"
 )
 
 func init() {
@@ -43,6 +45,7 @@ func init() {
 	modules.RegisterSource("websocket", func() api.Source { return websocket.GetSource() })
 	modules.RegisterSource("simulator", func() api.Source { return simulator.GetSource() })
 	modules.RegisterSource("nexmark", func() api.Source { return nexmark.GetSource() })
+	modules.RegisterSource("sql", sql.GetSource)
 
 	modules.RegisterSink("log", sink.NewLogSink)
 	modules.RegisterSink("logToMemory", sink.NewLogSinkToMemory)
@@ -53,10 +56,12 @@ func init() {
 	modules.RegisterSink("neuron", neuron.GetSink)
 	modules.RegisterSink("file", file.GetSink)
 	modules.RegisterSink("websocket", func() api.Sink { return websocket.GetSink() })
+	modules.RegisterSink("sql", sql.GetSink)
 
 	modules.RegisterLookupSource("memory", memory.GetLookupSource)
 	modules.RegisterLookupSource("httppull", http.GetLookUpSource)
 	modules.RegisterLookupSource("simulator", func() api.Source { return &simulator.SimulatorLookupSource{} })
+	modules.RegisterLookupSource("sql", sql.GetLookupSource)
 
 	modules.RegisterConnection("mqtt", mqtt.CreateConnection)
 	modules.RegisterConnection("nng", nng.CreateConnection)
