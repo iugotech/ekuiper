@@ -270,7 +270,13 @@ func prepareValues(ctx api.StreamContext, values []interface{}, columnTypes []*s
 	if len(columnTypes) > 0 {
 		for idx, columnType := range columnTypes {
 			nullable, ok := columnType.Nullable()
-			if got := buildScanValueByColumnType(ctx, columnType.Name(), columnType.DatabaseTypeName(), nullable && ok); got != nil {
+			useNullable := nullable && ok
+			if !ok {
+				// Driver does not support nullable metadata (e.g. pgx stdlib):
+				// default to nullable to avoid Scan errors on NULL values.
+				useNullable = true
+			}
+			if got := buildScanValueByColumnType(ctx, columnType.Name(), columnType.DatabaseTypeName(), useNullable); got != nil {
 				values[idx] = got
 				continue
 			}

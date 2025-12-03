@@ -220,7 +220,7 @@ func (g noQuoteSQLGen) buildQuery(fields []string, keys []string, values []inter
 
 func (s *SqlLookupSource) buildGen() sqlQueryGen {
 	switch strings.ToLower(s.driver) {
-	case "sqlserver", "mssql", "postgres":
+	case "sqlserver", "mssql", "postgres", "pgx":
 		return noQuoteSQLGen{table: s.table}
 	default:
 		return defaultSQLGen{table: s.table}
