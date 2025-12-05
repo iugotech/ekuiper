@@ -1,8 +1,8 @@
 basic:
   # debug | info | warn | error | fatal | panic
-  logLevel: debug
+  logLevel: info
   # true|false, with debug level, it prints more debug info
-  debug: true
+  debug: false
   # true|false, if it's set to true, then the log will be print to console
   consoleLog: true
   # true|false, if it's set to true, then the log will be print to log file
